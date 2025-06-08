@@ -14,18 +14,20 @@ import static org.hamcrest.Matchers.notNullValue;
 @RunWith(Parameterized.class)
 public class OrderCreationTest {
     private final String[] colors;
+    private final String colorDescription;
 
-    public OrderCreationTest(String[] colors) {
+    public OrderCreationTest(String[] colors, String colorDescription) {
         this.colors = colors;
+        this.colorDescription = colorDescription;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Цвета: {1}")
     public static Object[][] getColorData() {
         return new Object[][] {
-                {new String[]{"BLACK"}},
-                {new String[]{"GREY"}},
-                {new String[]{"BLACK", "GREY"}},
-                {null}
+                {new String[]{"BLACK"}, "Черный"},
+                {new String[]{"GREY"}, "Серый"},
+                {new String[]{"BLACK", "GREY"}, "Черный + Серый"},
+                {null, "Без цвета"}
         };
     }
 
